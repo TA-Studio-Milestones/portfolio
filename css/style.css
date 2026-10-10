@@ -1,7 +1,9 @@
-/* タブレット用・携帯用の判定値をＪＳへ渡すために用意*/
+/* JSへ渡す設定値 */
 :root {
-    --is-tablet: 0;
     --is-mobile: 0;
+
+    /* PCのモーダル拡大率 */
+    --modal-scale: 1.3;
 }
 
 * {
@@ -302,7 +304,7 @@ body:has(.works-container)  {
 /* 画面内に入ったとき */
 .fade-in.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 /* 表示済みカードのホバー */
@@ -315,47 +317,46 @@ body:has(.works-container)  {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.75);
     z-index: 1000;
+
+    background-color: rgba(0, 0, 0, 0.75);
+
     overflow: auto;
     padding: 20px;
+
     display: flex;
 }
 
-/* 拡大表示するカード */
-.modal-content {
-    width: 100%;
-    max-width: 900px;
-    max-height: none;
-    overflow: visible;
-    margin: 0;
-    transform-origin: top left;
+/* 拡大後の領域を確保して中央配置 */
+.modal-wrapper {
+    flex-shrink: 0;
+    margin: auto;
 }
 
+/* 拡大表示するカード */
 .modal-content,
 .modal-content:hover {
-    cursor: default;
-    transform: scale(1.3);
+    flex: none;
+    max-width: none;
+    max-height: none;
+    margin: 0;
     opacity: 1;
+    transform: scale(var(--modal-scale));
+    transform-origin: top left;
     transition: none;
+    cursor: default;
 }
-
 
 
 /* タブレット用 */
 @media (min-width: 769px) and (max-width: 1366px) {
     :root {
-        --is-tablet: 1;
+        --modal-scale: 1;
     }
 
     nav {
         flex-wrap: wrap;
         gap: 20px 30px;
-    }
-
-    .modal-content,
-    .modal-content:hover {
-        transform: none;
     }
 }
 

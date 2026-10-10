@@ -2,42 +2,53 @@ document.querySelectorAll(".skill-item, .work-item").forEach(card => {
 
     card.addEventListener("click", () => {
 
+        // スマホ判定
         const isMobile = getComputedStyle(document.documentElement)
-        .getPropertyValue("--is-mobile")
-        .trim() === "1";
+            .getPropertyValue("--is-mobile")
+            .trim() === "1";
 
         if (isMobile) {
             return;
         }
 
-        // 画面全体を覆う背景を作成
+        // CSSからモーダルの拡大率を取得
+        const scale = parseFloat(
+            getComputedStyle(document.documentElement)
+                .getPropertyValue("--modal-scale")
+        );
+
+        // 元のカードの幅を取得
+        const originalWidth = card.getBoundingClientRect().width;
+
+        // 背景を作成
         const overlay = document.createElement("div");
         overlay.classList.add("modal-overlay");
 
-        // クリックしたカードを複製
+        // 中央配置用の領域を作成
+        const modalWrapper = document.createElement("div");
+        modalWrapper.classList.add("modal-wrapper");
+
+        // カードを複製
         const modalCard = card.cloneNode(true);
         modalCard.classList.add("modal-content");
 
-        // 背景の中にカードを配置
-        const modalWrapper = document.createElement("div");
-        modalWrapper.style.width = "fit-content";
-        modalWrapper.style.margin = "auto";
-        modalWrapper.style.flexShrink = "0";
+        // フェードインのtransformとの競合を防ぐ
+        modalCard.classList.remove("fade-in", "is-visible");
+
+        // 元のカードの幅を固定
+        modalCard.style.width = `${originalWidth}px`;
+
+        // モーダルを組み立てる
         modalWrapper.appendChild(modalCard);
-
         overlay.appendChild(modalWrapper);
-
-        // 画面に表示
         document.body.appendChild(overlay);
 
-        const isTablet = getComputedStyle(document.documentElement)
-            .getPropertyValue("--is-tablet")
-            .trim() === "1";
+        // 拡大前のカードの高さを取得
+        const originalHeight = modalCard.offsetHeight;
 
-        const scale = isTablet ? 1 : 1.3;
-
-        modalWrapper.style.width = `${modalCard.offsetWidth * scale}px`;
-        modalWrapper.style.height = `${modalCard.offsetHeight * scale}px`;
+        // 拡大後の表示領域を確保
+        modalWrapper.style.width = `${originalWidth * scale}px`;
+        modalWrapper.style.height = `${originalHeight * scale}px`;
 
         // モーダルを閉じる共通処理
         function closeModal() {
@@ -45,21 +56,21 @@ document.querySelectorAll(".skill-item, .work-item").forEach(card => {
             document.removeEventListener("keydown", handleKeydown);
         }
 
-        // Escキーの処理
+        // Escキーで閉じる
         function handleKeydown(event) {
             if (event.key === "Escape") {
                 closeModal();
             }
         }
 
-        // 背景をクリックすると閉じる
-        overlay.addEventListener("click", (event) => {
+        // 背景クリックで閉じる
+        overlay.addEventListener("click", event => {
             if (event.target === overlay) {
                 closeModal();
             }
         });
 
-        // Escキーでも閉じる
+        // Escキーで閉じる
         document.addEventListener("keydown", handleKeydown);
 
     });
