@@ -3,7 +3,7 @@
     --is-mobile: 0;
 
     /* PCのモーダル拡大率 */
-    --modal-scale: 1.3;
+    --modal-scale: 1.1;
 }
 
 * {
@@ -17,6 +17,11 @@ header {
     z-index: 100;
     padding: 20px;
     background-color: #333;
+}
+
+/* PC・タブレットではボタンを非表示 */
+.menu-toggle {
+    display: none;
 }
 
 nav {
@@ -40,6 +45,7 @@ nav a.active {
     border-bottom: 1px solid #E5C89A;
     padding-bottom: 5px;
 }
+
 
 body {
     font-family: Arial, sans-serif;
@@ -348,6 +354,47 @@ body:has(.works-container)  {
 }
 
 
+/* ページ上部へ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 900;
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid #D4AF6E;
+    border-radius: 50%;
+
+    background-color: rgba(15, 20, 30, 0.9);
+    color: #E5C89A;
+
+    font-size: 24px;
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+
+    transition: opacity 0.3s ease,
+                transform 0.3s ease,
+                visibility 0.3s ease;
+}
+
+/* スクロール後に表示 */
+#back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* マウスを乗せたとき */
+#back-to-top:hover {
+    background-color: #D4AF6E;
+    color: #101723;
+}
+
+
 /* タブレット用 */
 @media (min-width: 769px) and (max-width: 1366px) {
     :root {
@@ -367,10 +414,51 @@ body:has(.works-container)  {
         --is-mobile: 1;
     }
 
-    nav {
-        flex-wrap: wrap;
-        gap: 15px 25px;
-        padding: 8px 5px;
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+     /* ハンバーガーボタン */
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+
+        background: transparent;
+        border: 1px solid #D4AF6E;
+        border-radius: 6px;
+
+        color: #E5C89A;
+        font-size: 26px;
+
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+    }
+
+    /* 閉じた状態 */
+    #global-nav {
+        display: none;
+    }
+
+    /* 開いた状態 */
+    #global-nav.is-open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding-top: 15px;
+    }
+
+    /* 各メニュー */
+    #global-nav a {
+        display: block;
+        padding: 14px 10px;
+        text-align: center;
+
+        border-bottom: 1px solid rgba(212, 175, 110, 0.25);
     }
 
     .skill-list {
@@ -395,5 +483,10 @@ body:has(.works-container)  {
     .work-item:hover {
         cursor: default;
         transform: none;
+    }
+
+    #back-to-top {
+        width: 44px;
+        height: 44px;
     }
 }

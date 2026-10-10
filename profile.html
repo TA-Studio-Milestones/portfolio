@@ -16,7 +16,17 @@
 
     <body>
         <header>
-            <nav>
+            <!-- スマホ用メニューボタン -->
+            <button class="menu-toggle"
+                    type="button"
+                    aria-label="メニューを開く"
+                    aria-expanded="false"
+                    aria-controls="global-nav">
+                ☰
+            </button>
+
+            <!-- ナビゲーション -->
+            <nav  id="global-nav">
                 <a href="index.html">HOME</a>
                 <a href="profile.html" class="active">プロフィール</a>
                 <a href="skills.html">スキル</a>
@@ -60,6 +70,14 @@
                     </div>
             </section>
         </main>
+
+        <!-- ページ上部へ戻るボタン -->
+        <button id="back-to-top" type="button" aria-label="ページ上部へ戻る">
+            ↑
+        </button>
+
+        <script src="JS/menu.js"></script>
+        <script src="JS/back-to-top.js"></script>
     </body>
 
 </html>

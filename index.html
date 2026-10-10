@@ -16,7 +16,17 @@
 
     <body>
         <header>
-            <nav>
+            <!-- スマホ用メニューボタン -->
+            <button class="menu-toggle"
+                    type="button"
+                    aria-label="メニューを開く"
+                    aria-expanded="false"
+                    aria-controls="global-nav">
+                ☰
+            </button>
+
+            <!-- ナビゲーション -->
+            <nav id="global-nav">
                 <a href="index.html" class="active">HOME</a>
                 <a href="profile.html">プロフィール</a>
                 <a href="skills.html">スキル</a>
@@ -39,6 +49,7 @@
             </section>
         </main>
 
+        <script src="JS/menu.js"></script>
         <script src="JS/scroll.js"></script>
     </body>
 
