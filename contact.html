@@ -39,7 +39,7 @@
             <h2 class="contact-title">お問い合わせ</h2>
 
             <div class="contact-content">
-                <form action="https://formspree.io/f/xjygyeld" method="POST">
+                <form id="contact-form" action="https://formspree.io/f/xjygyeld" method="POST">
 
                     <label for="name">お名前</label>
                     <input type="text" id="name" name="name" required>
@@ -52,6 +52,9 @@
 
                     <button type="submit">送信する</button>
 
+                    <!-- 送信結果を表示 -->
+                    <p id="form-status" role="status" aria-live="polite"></p>
+
                 </form>
             </div>
 
@@ -63,6 +66,7 @@
         </button>
 
         <script src="JS/menu.js"></script>
+        <script src="JS/contact.js"></script>
         <script src="JS/back-to-top.js"></script>
     </body>
 

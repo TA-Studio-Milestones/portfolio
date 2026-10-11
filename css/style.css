@@ -235,29 +235,61 @@ body:has(.works-container)  {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: "Noto Serif JP", serif;
+    color: #F2EDE5;
+}
+
+body:has(.contact-container)  {
+    background-image: url("../images/form-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .contact-title {
     font-size: 2.5rem;
     text-align: center;
-    margin: 50px 0;
+    margin: 20px 0;
+    font-weight: 500;
+    color: #E5C89A;
 }
 
+/* お問い合わせフォーム全体 */
 .contact-content form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 50px;
+    padding: 15px 30px;
+
+    /* 半透明のネイビー */
+    background-color: rgba(15, 23, 38, 0.3);
+
+    /* シルバー系の枠線 */
+    border: 1.5px solid rgba(190, 195, 205, 0.5);
+    border-radius: 10px;
+
+    /* 立体感 */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+
+    /* 背景をぼかす */
+    backdrop-filter: blur(3px);
 }
 
+/* 入力欄 */
 .contact-content input,
 .contact-content textarea {
+    font-family: "Noto Serif JP", serif;
+    font-size: 1rem;
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    background-color: rgba(220, 221, 224, 0.95);
+    color: #202020;
+    border: 1px solid #AEB4BE;
     border-radius: 6px;
-    font-size: 1rem;
 }
 
 .contact-content textarea {
@@ -268,23 +300,58 @@ body:has(.works-container)  {
 .contact-content input:focus,
 .contact-content textarea:focus {
     outline: none;
-    border-color: #666;
+    border-color: #888585;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 
+/* 送信ボタン */
 .contact-content button {
     padding: 14px 30px;
-    background-color: #333;
-    color: white;
-    border: none;
+    background-color: #626D7C;
+    color: #FFFFFF;
+    border: 1px solid #8993A1;
     border-radius: 6px;
+    font-family: "Noto Serif JP", serif;
     font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
-.contact-content button:hover {
-    background-color: #686868;
+.contact-content button:hover:not(:disabled) {
+    background-color: #747e8d;
+    box-shadow: 0 0 12px rgba(190, 195, 205, 0.281);
+}
+
+/* 送信中のボタン */
+.contact-content button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* お問い合わせフォームの送信結果 */
+#form-status {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+#form-status:empty {
+    display: none;
+}
+
+/* 送信成功 */
+#form-status.success {
+    color: #D4AF6E;
+    font-weight: 500;
+}
+
+/* 送信失敗 */
+#form-status.error {
+    color: #D96C6C;
+    font-weight: 500;
 }
 
 
@@ -324,13 +391,10 @@ body:has(.works-container)  {
     position: fixed;
     inset: 0;
     z-index: 1000;
-
-    background-color: rgba(0, 0, 0, 0.75);
-
     overflow: auto;
     padding: 20px;
-
     display: flex;
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 /* 拡大後の領域を確保して中央配置 */
@@ -362,20 +426,15 @@ body:has(.works-container)  {
     z-index: 900;
     width: 50px;
     height: 50px;
-
     border: 1px solid #D4AF6E;
     border-radius: 50%;
-
     background-color: rgba(15, 20, 30, 0.9);
     color: #E5C89A;
-
     font-size: 24px;
     cursor: pointer;
-
     opacity: 0;
     visibility: hidden;
     transform: translateY(15px);
-
     transition: opacity 0.3s ease,
                 transform 0.3s ease,
                 visibility 0.3s ease;
@@ -424,16 +483,13 @@ body:has(.works-container)  {
     .menu-toggle {
         display: block;
         margin-left: auto;
-
+        width: 44px;
+        height: 44px;
+        font-size: 26px;
+        color: #E5C89A;
         background: transparent;
         border: 1px solid #D4AF6E;
         border-radius: 6px;
-
-        color: #E5C89A;
-        font-size: 26px;
-
-        width: 44px;
-        height: 44px;
         cursor: pointer;
     }
 
@@ -448,7 +504,6 @@ body:has(.works-container)  {
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-
         padding-top: 15px;
     }
 
@@ -457,7 +512,6 @@ body:has(.works-container)  {
         display: block;
         padding: 14px 10px;
         text-align: center;
-
         border-bottom: 1px solid rgba(212, 175, 110, 0.25);
     }
 
@@ -488,5 +542,20 @@ body:has(.works-container)  {
     #back-to-top {
         width: 44px;
         height: 44px;
+    }
+
+    /* お問い合わせページのスマホ対応 */
+    .contact-container {
+        width: 92%;
+    }
+
+    .contact-title {
+        font-size: 1.8rem;
+        margin: 30px 0;
+    }
+
+    .contact-content form {
+        gap: 12px;
+        padding: 15px 20px;
     }
 }
