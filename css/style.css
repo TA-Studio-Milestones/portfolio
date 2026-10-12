@@ -429,6 +429,17 @@ body:has(.contact-container)  {
     opacity: 1;
 }
 
+/* プロフィール専用フェードイン */
+.profile-fade {
+    opacity: 0;
+    transition: opacity 2.0s ease;
+}
+
+/* プロフィール表示時 */
+.profile-fade.is-visible {
+    opacity: 1;
+}
+
 /* スクロール時のフェードイン */
 .fade-in {
     opacity: 0;
@@ -528,15 +539,6 @@ body:has(.contact-container)  {
         gap: 20px 30px;
     }
 
-    :root {
-        --modal-scale: 1;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        gap: 20px 30px;
-    }
-
     body:has(.profile-container) {
         background-position: left center;
     }
@@ -594,10 +596,10 @@ body:has(.contact-container)  {
         text-align: center;
         border-bottom: 1px solid rgba(212, 175, 110, 0.25);
     }
-
+    
     body:has(.profile-container) {
-    background-attachment: scroll;
-    background-position: left center;
+        background-attachment: scroll;
+        background-position: left center;
     }
 
     .profile-container {
@@ -616,6 +618,14 @@ body:has(.contact-container)  {
 
     .profile-section h3 {
         font-size: 1.2rem;
+    }
+    
+    .profile-section ul {
+        margin: 0;
+        padding-left: 25px;
+        color: #F2EDE5;
+        font-size: 1rem;
+        line-height: 2;
     }
 
     .skill-list {

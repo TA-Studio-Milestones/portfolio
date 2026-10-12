@@ -17,7 +17,7 @@ const observer = new IntersectionObserver((entries) => {
 
 
 // ② HOME専用フェードイン
-const homeElements = document.querySelectorAll(".home-fade");
+const homeElements = document.querySelectorAll(".home-fade, .profile-fade");
 
 homeElements.forEach(element => {
     observer.observe(element);
