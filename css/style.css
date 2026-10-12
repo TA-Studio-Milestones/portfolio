@@ -120,15 +120,78 @@ body:has(#home) main {
     transform: translate(-50%, -50%);
 }
 
-.profile-content {
-    display: flex;
-    align-items: center;
-    gap: 40px;
+body:has(.profile-container) {
+    min-height: 100dvh;
+    background-image: url("../images/profile-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.profile-image {
-    width: 200px;
-    height: auto;
+.profile-container {
+    width: 100%;
+    min-height: calc(100dvh - 85px);
+    padding: 40px 5%;
+}
+
+/* 左側のロゴを避けて右側に配置 */
+.profile-layout {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* プロフィール情報全体 */
+.profile-details {
+    width: 60%;
+    max-width: 850px;
+    color: #F2EDE5;
+    font-family: "Noto Serif JP", serif;
+
+    /* 内側の枠 */
+    padding: 25px 35px;
+    background-color: rgba(10, 15, 25, 0.35);
+    border: 1px solid rgba(229, 200, 154, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+}
+
+.profile-title {
+    color: #E5C89A;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 500;
+    margin: 0 0 10px;
+}
+
+.profile-name {
+    color: #F2EDE5;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0 0 25px;
+}
+
+/* 各項目 */
+.profile-section {
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.profile-section h3 {
+    color: #E5C89A;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(229, 200, 154, 0.5);
+}
+
+.profile-section p {
+    color: #F2EDE5;
+    font-size: 1rem;
+    line-height: 1.9;
+    margin: 0;
 }
 
 body:has(.skills-container),
@@ -464,6 +527,23 @@ body:has(.contact-container)  {
         flex-wrap: wrap;
         gap: 20px 30px;
     }
+
+    :root {
+        --modal-scale: 1;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 20px 30px;
+    }
+
+    body:has(.profile-container) {
+        background-position: left center;
+    }
+
+    .profile-details {
+        width: 50%;
+    }
 }
 
 
@@ -513,6 +593,29 @@ body:has(.contact-container)  {
         padding: 14px 10px;
         text-align: center;
         border-bottom: 1px solid rgba(212, 175, 110, 0.25);
+    }
+
+    body:has(.profile-container) {
+    background-attachment: scroll;
+    background-position: left center;
+    }
+
+    .profile-container {
+        padding: 30px 6%;
+    }
+
+    .profile-details {
+        padding: 20px 18px;
+        width: 100%;
+        max-width: none;
+    }
+
+    .profile-title {
+        font-size: 3rem;
+    }
+
+    .profile-section h3 {
+        font-size: 1.2rem;
     }
 
     .skill-list {
